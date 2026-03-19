@@ -1,0 +1,13 @@
+{
+  "name": "openclaw-server",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node start.js"
+  },
+  "dependencies": {
+    "openclaw": "latest"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
