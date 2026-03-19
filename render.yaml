@@ -1,0 +1,49 @@
+services:
+  - type: web
+    name: my-openclaw
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+```
+
+4. Tap **Commit new file**
+
+---
+
+## STEP 3 — Deploy on Render
+
+1. Go to **render.com** → tap **New +** → tap **Web Service**
+2. Tap **"Connect a repository"**
+3. It shows your GitHub repos → tap **`openclaw-deployment`**
+4. Tap **Connect**
+5. Fill in the settings:
+   - **Name**: `my-openclaw`
+   - **Branch**: `main`
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+   - **Instance Type**: **Free**
+6. Scroll down to **Environment Variables** → tap **Add Environment Variable** for each:
+
+   | Key | Value |
+   |---|---|
+   | `TELEGRAM_BOT_TOKEN` | Your bot token |
+   | `GOOGLE_GENERATIVEAI_API_KEY` | Your Gemini key |
+   | `OPENCLAW_GATEWAY_PASSWORD` | `MySecret2026!` |
+   | `NODE_ENV` | `production` |
+
+7. Tap **Create Web Service**
+8. Render starts building — wait **5–10 minutes**
+9. When done, your public URL appears at the top: `https://my-openclaw.onrender.com`
+10. ✅ **Save this URL** — it's your permanent web UI address
+
+---
+
+## STEP 4 — Register Telegram Webhook (Updated URL)
+
+Since we moved to Render, update the webhook. Open Chrome and paste this (replace YOUR_TOKEN):
+```
+https://api.telegram.org/botYOUR_TOKEN_HERE/setWebhook?url=https://my-openclaw.onrender.com/telegram-webhook&secret_token=mysecret2026abc
