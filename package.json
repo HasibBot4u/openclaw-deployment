@@ -5,7 +5,8 @@
     "start": "node start.js"
   },
   "dependencies": {
-    "openclaw": "latest"
+    "openclaw": "latest",
+    "http-proxy": "^1.18.1"
   },
   "engines": {
     "node": "22.x"
